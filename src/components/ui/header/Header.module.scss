@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
+
+  padding: 15px 20px;
+
+  background-color: gray;
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .username {
+    font-size: 16px;
+    font-weight: 500;
+
+  }
+}

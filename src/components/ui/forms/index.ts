@@ -1,0 +1,1 @@
+export { LoginSingUpForm } from './LoginSingUpForm/LoginSingUpForm'
