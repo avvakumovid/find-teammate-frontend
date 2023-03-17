@@ -1,4 +1,5 @@
 import { Layout } from '@/components/ui';
+import { Finds } from '@/components/ui/finds';
 import UserService from '@/services/user/user.service';
 import { useQuery } from '@tanstack/react-query';
 import styles from './Main.module.scss';
@@ -15,9 +16,7 @@ export const Main = (props: MainProps) => {
 
   return (
     <Layout user={data}>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita rem
-      </div>
+      <Finds />
     </Layout>
   );
 };

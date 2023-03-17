@@ -1,11 +1,10 @@
 import { PropsWithChildren } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
 import styles from './Header.module.scss';
 import { FiLogOut } from 'react-icons/fi';
-import { User } from '@/types/types';
+import { IUser } from '@/types/types';
 
 interface HeaderProps extends PropsWithChildren {
-  user: User;
+  user: IUser;
 }
 
 export const Header = ({ user }: HeaderProps) => {

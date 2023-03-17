@@ -1,10 +1,11 @@
 import authService from '@/services/auth/auth.service';
+import { IUser } from '@/types/types';
 import { createContext, useContext, useEffect } from 'react';
 import { getAccessToken } from './../services/auth/auth.helper';
 
 export interface AuthContextData {
-  user: User | null;
-  setUser: (user: User | null) => void;
+  user: IUser | null;
+  setUser: (user: IUser | null) => void;
   token: string;
   setToken: (token: string) => void;
 }

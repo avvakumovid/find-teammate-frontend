@@ -1,0 +1,40 @@
+.card {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  width: 350px;
+  height: 600px;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+
+  border: 1px solid red;
+  border-radius: 10px;
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    .like {
+      background-color: rgba(35, 189, 76, 0.5);
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+    .dislike {
+      background-color: rgba(238, 44, 44, 0.5);
+      padding: 10px;
+      border-radius: 50%;
+    }
+  }
+
+  .username {
+    font-weight: 500;
+  }
+
+}

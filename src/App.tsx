@@ -4,12 +4,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from './context/AuthContext';
 import { useEffect, useState } from 'react';
 import { getAccessToken } from './services/auth/auth.helper';
-import { User } from './types/types';
+import { IUser } from './types/types';
 
 const queryClient = new QueryClient();
 
 function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
   const [token, setToken] = useState('');
 
   return (
