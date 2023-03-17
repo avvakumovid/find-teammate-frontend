@@ -10,11 +10,9 @@ export const Finds = ({}: FindsProps) => {
   const { data, isLoading, isError } = useQuery(['candidates'], () =>
     UserService.getCandidates()
   );
-
+  const { onLike, onDislike } = useLikeDislike();
   if (isLoading || !data) return <div>loading</div>;
   if (isError) return <div>error</div>;
-
-  const { onLike, onDislike } = useLikeDislike();
 
   return (
     <div>
