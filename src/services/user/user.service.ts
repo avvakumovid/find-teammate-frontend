@@ -1,5 +1,5 @@
 
-import { IUser } from '@/types/types';
+import { IChat, IUser } from '@/types/types';
 import { BaseService } from '../base.service';
 import { IDislikeResponse, ILikeResponse } from './user.interface';
 
@@ -65,6 +65,19 @@ class UserService extends BaseService {
     }
   }
 
+
+  async getChats() {
+    try {
+      const response = await this.instance<IChat[]>({
+        url: 'chats',
+        method: 'GET',
+
+      })
+      return response.data
+    } catch (error) {
+
+    }
+  }
 }
 
 export default new UserService()

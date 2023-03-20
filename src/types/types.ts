@@ -18,3 +18,15 @@ export enum LikeTypes {
   match = 'MATCH',
   dislike = 'DISLIKE'
 }
+
+export interface IChat {
+  _id: string;
+  messages: IMessage[];
+  participants: IUser[]
+}
+
+export interface IMessage {
+  userId: string
+  message: string
+  date: string
+}

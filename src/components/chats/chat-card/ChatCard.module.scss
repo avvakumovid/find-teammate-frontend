@@ -1,0 +1,35 @@
+.chat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 20px;
+  width: 250px;
+
+
+
+  padding: 5px 10px;
+
+  background-color: rgb(102, 102, 102);
+
+  .image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+
+    .message,
+    .name {
+      // max-width: 35%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+}
