@@ -1,5 +1,29 @@
 .chats {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   row-gap: 10px;
+  column-gap: 20px;
+
+  height: 85vh;
+
+
+  .cards {
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    overflow-x: unset;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    /* for Internet Explorer, Edge */
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+  }
+
+
 }

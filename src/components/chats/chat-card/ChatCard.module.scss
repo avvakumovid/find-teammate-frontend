@@ -1,12 +1,9 @@
-.chat {
+.chatCard {
   display: flex;
   flex-direction: row;
+  column-gap: 20px;
   align-items: center;
   justify-content: flex-start;
-  column-gap: 20px;
-  width: 250px;
-
-
 
   padding: 5px 10px;
 

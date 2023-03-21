@@ -3,8 +3,8 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import styles from './Chats.module.scss';
 import { useAuthContext } from '@/context/AuthContext';
 import { ChatCard } from './chat-card';
-import { io } from 'socket.io-client';
 import { useSocket } from '@/hooks/useSocket';
+import { Chat } from './chat';
 
 const socketOptions = (token: string) => ({
   transportOptions: {
@@ -23,10 +23,10 @@ export const Chats = ({}: ChatsProps) => {
     UserService.getChats()
   );
   const { user, token } = useAuthContext();
-  console.log('render')
+  const { socket } = useSocket(token);
   //let socket: any;
   //
-  //const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
   //const connect = () => {
   //  socket = io('ws://localhost:80', socketOptions(token));
   //  socket.on('message', (data: any) => {
@@ -35,37 +35,50 @@ export const Chats = ({}: ChatsProps) => {
   //  });
   //};
 
-  const { socket } = useSocket(token);
+  const sendMessage = (chatId: string, message: string) => {
+    socket.emit('message', {
+      chatId: chatId,
+      message: message,
+    });
+  };
+
+  console.log('chats render');
 
   if (isLoading || !data) return <div>loading</div>;
   if (isError) return <div>error</div>;
   return (
     <div className={styles.chats}>
-      {data.map(chat => {
-        const participants = chat.participants.filter(
-          p => p._id !== user?._id
-        )[0];
-        return (
-          <ChatCard
-            key={chat._id}
-            id={chat._id}
-            image={participants.pictures[0]}
-            name={participants.username}
-            lastMessage={
-              chat.messages[chat.messages.length - 1]?.message ||
-              'Начать чатНачать чатНачать чатНачать чатНачать чатНачать чат'
-            }
-            onClick={(id: string) => {
-              if (socket) {
+      <div className={styles.cards}>
+        {data.map(chat => {
+          const participants = chat.participants.filter(
+            p => p._id !== user?._id
+          )[0];
+          return (
+            <ChatCard
+              token={token}
+              key={chat._id}
+              id={chat._id}
+              image={participants.pictures[0]}
+              name={participants.username}
+              lastMessage={
+                chat.messages[chat.messages.length - 1]?.message ||
+                'Начать чатНачать чатНачать чатНачать чатНачать чатНачать чат'
+              }
+              onClick={() => {
                 socket.emit('message', {
                   message: Date.now(),
-                  chatId: id,
+                  chatId: chat._id,
                 });
-              }
-            }}
-          />
-        );
-      })}
+              }}
+            />
+          );
+        })}
+      </div>
+      <Chat
+        chatId={'6414b9cbcc15a07c7ba018ee'}
+        userId={user?._id ?? ''}
+        socket={socket}
+      />
     </div>
   );
 };

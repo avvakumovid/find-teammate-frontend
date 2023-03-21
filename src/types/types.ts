@@ -30,3 +30,8 @@ export interface IMessage {
   message: string
   date: string
 }
+
+export interface ISocketMessage {
+  chatId: string;
+  message: IMessage;
+}
