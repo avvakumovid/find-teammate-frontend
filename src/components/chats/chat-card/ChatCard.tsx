@@ -20,8 +20,6 @@ export const ChatCard = ({
   token,
   onClick,
 }: ChatCardProps) => {
-
-  console.log(`chat ${id} render`);
   return (
     <div className={styles.chatCard}>
       <img
@@ -34,7 +32,7 @@ export const ChatCard = ({
         <span className={styles.message}>{lastMessage}</span>
         <button
           onClick={() => {
-            onClick()
+            onClick();
           }}
         >
           SEND!

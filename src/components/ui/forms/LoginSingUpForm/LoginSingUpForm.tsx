@@ -24,7 +24,6 @@ export const LoginSingUpForm = () => {
     mutationFn: AuthService.singUp.bind(AuthService),
     onSuccess: data => {
       toast.success('User was create');
-      console.log(data);
     },
   });
   const {

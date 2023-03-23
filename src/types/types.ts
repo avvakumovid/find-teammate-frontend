@@ -22,7 +22,8 @@ export enum LikeTypes {
 export interface IChat {
   _id: string;
   messages: IMessage[];
-  participants: IUser[]
+  participants: IUser[];
+  currentPage: number;
 }
 
 export interface IMessage {

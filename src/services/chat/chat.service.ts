@@ -8,10 +8,10 @@ class ChatService extends BaseService {
     super('chat')
   }
 
-  async getMessagesFormChat(chatId: string, limit?: string, skip?: string) {
+  async getMessagesFormChat(chatId: string, skip?: number, limit?: number,) {
     try {
       const response = await this.instance<IChat>({
-        url: `/${chatId}?${limit && 'limit=' + limit}&${skip && 'skip=' + skip}`,
+        url: `/${chatId}?${limit !== undefined ? 'limit=' + limit + '&' : ''}${skip !== undefined ? 'skip=' + skip : ''}`,
         method: 'GET',
       })
       return response.data

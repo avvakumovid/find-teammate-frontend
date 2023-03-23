@@ -29,7 +29,6 @@ export const useSocket = (token: string) => {
         toast.success('connect')
       })
       socket.on('message', (data: ISocketMessage) => {
-        console.log(data);
         queryClient.invalidateQueries(['chats'])
         queryClient.invalidateQueries([data.chatId])
       });

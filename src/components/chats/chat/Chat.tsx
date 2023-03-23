@@ -1,9 +1,13 @@
 import styles from './Chat.module.scss';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import ChatService from '@/services/chat/chat.service';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Socket } from 'socket.io-client';
-import { useChat } from './../../../hooks/useChat';
+import { IMessage } from '@/types/types';
 interface ChatProps {
   chatId: string;
   userId: string;
@@ -11,8 +15,18 @@ interface ChatProps {
 }
 
 export const Chat = ({ chatId, userId, socket }: ChatProps) => {
-  const { data, isError, isLoading } = useQuery([chatId], () =>
-    ChatService.getMessagesFormChat(chatId)
+  const ref = useRef<HTMLDivElement>(null);
+
+  const [skip, setSkip] = useState(0);
+  const [messages, setMessages] = useState<IMessage[]>([]);
+
+  const { data, isError, isLoading } = useQuery(
+    [chatId, skip],
+    () => ChatService.getMessagesFormChat(chatId, skip),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
   );
   const [message, setMessage] = useState('');
 
@@ -20,9 +34,7 @@ export const Chat = ({ chatId, userId, socket }: ChatProps) => {
 
   useEffect(() => {
     if (socket) {
-      socket.on(chatId, (data: any) => {
-        console.log(data);
-      });
+      socket.on(chatId, (data: any) => {});
     }
 
     return () => {
@@ -32,18 +44,33 @@ export const Chat = ({ chatId, userId, socket }: ChatProps) => {
     };
   }, [socket]);
 
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.scrollTop = ref.current.scrollHeight;
+      ref.current.addEventListener('scroll', e => {
+        console.log(e);
+      });
+    }
+  }, [ref.current]);
+
+  useEffect(() => {
+    if (data) {
+      setMessages([...data.messages, ...messages]);
+    }
+  }, [data]);
+
   if (isLoading || !data) return <div>loading</div>;
   if (isError) return <div>error</div>;
 
   return (
     <div className={styles.chat}>
-      <div className={styles.messages}>
-        {data.messages.map(msg => (
+      <div ref={ref} className={styles.messages}>
+        {messages.map(msg => (
           <span
             key={msg.date + msg.message}
-            className={
+            className={`${styles.message} ${
               userId === msg.userId ? styles.myMessage : styles.enemyMessage
-            }
+            }`}
           >
             {msg.message}
           </span>
@@ -57,6 +84,15 @@ export const Chat = ({ chatId, userId, socket }: ChatProps) => {
             setMessage(e.currentTarget.value);
           }}
         />
+
+        <button
+          className={styles.button}
+          onClick={() => {
+            setSkip(prev => prev + 1);
+          }}
+        >
+          Next!
+        </button>
         <button
           className={styles.button}
           onClick={() => {

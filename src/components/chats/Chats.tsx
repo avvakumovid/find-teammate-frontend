@@ -30,7 +30,6 @@ export const Chats = ({}: ChatsProps) => {
   //const connect = () => {
   //  socket = io('ws://localhost:80', socketOptions(token));
   //  socket.on('message', (data: any) => {
-  //    console.log(data);
   //    queryClient.invalidateQueries(['chats']);
   //  });
   //};
@@ -41,8 +40,6 @@ export const Chats = ({}: ChatsProps) => {
       message: message,
     });
   };
-
-  console.log('chats render');
 
   if (isLoading || !data) return <div>loading</div>;
   if (isError) return <div>error</div>;
