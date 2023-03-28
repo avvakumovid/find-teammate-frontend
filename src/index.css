@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,500;1,300;1,500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
 
 /* Указываем box sizing */
 *,
@@ -40,7 +39,7 @@ body {
   line-height: 1.5;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #230E2B;
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
@@ -82,7 +81,7 @@ body {
   scrollbar-width: none;
   /* for Firefox */
   overflow-y: scroll;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-size: 16px;
 }
 

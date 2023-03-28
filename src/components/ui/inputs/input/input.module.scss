@@ -1,0 +1,53 @@
+$icon-size: 20px;
+
+.container {
+  position: relative;
+  width: 100%;
+
+  .input {
+    padding: 23px 30px;
+    border-radius: 500px;
+    border: 0;
+    width: 100%;
+    background-color: #42204E;
+    border-bottom: 2px solid transparent;
+
+    &::placeholder {
+      color: #8B5D9A;
+    }
+
+    &:focus {
+      // border: 1px solid #8B5D9A;
+      outline: none;
+    }
+
+    &.isLeft {
+      padding-left: calc(30px + $icon-size);
+    }
+
+    &.isRight {
+      padding-right: calc(30px + $icon-size);
+    }
+
+    &.error {
+      border-bottom: 2px solid #A01414;
+    }
+  }
+
+  .leftIcon {
+    color: #8B5D9A;
+    position: absolute;
+    width: $icon-size;
+    height: $icon-size;
+    left: 20px;
+    top: calc(50% - $icon-size / 2);
+  }
+
+  .rightIcon {
+    position: absolute;
+    width: $icon-size;
+    height: $icon-size;
+    right: 20px;
+    top: calc(50% - $icon-size / 2);
+  }
+}

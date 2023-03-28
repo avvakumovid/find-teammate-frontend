@@ -1,0 +1,30 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  flex: 0 0 auto;
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 30px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  .lang {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    row-gap: 6px;
+  }
+}

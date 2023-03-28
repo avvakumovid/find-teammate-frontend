@@ -1,4 +1,4 @@
-import { Layout, LoginSingUpForm } from '@/components/ui';
+import { Layout, LoginSingUpForm } from '@/components/old/ui';
 import styles from './LoginSingUp.module.scss';
 
 interface ILoginSignUpProps {}

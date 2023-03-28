@@ -1,22 +1,28 @@
 import App from '@/App';
-import { Layout } from '@/components/ui';
-import { LoginSignUp, Main } from '@/pages';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useAuthContext } from '@/context/AuthContext';
 import { useEffect } from 'react';
 import { getAccessToken } from '@/services/auth/auth.helper';
+import { Login } from '@/pages';
 
-const router = createBrowserRouter([
+//const router = createBrowserRouter([
+//  {
+//    path: '/',
+//    element: <LoginSignUp />,
+//  },
+//]);
+//
+//const authRouter = createBrowserRouter([
+//  {
+//    path: '/',
+//    element: <Main />,
+//  },
+//]);
+
+const test = createBrowserRouter([
   {
     path: '/',
-    element: <LoginSignUp />,
-  },
-]);
-
-const authRouter = createBrowserRouter([
-  {
-    path: '/',
-    element: <Main />,
+    element: <Login />,
   },
 ]);
 
@@ -33,5 +39,6 @@ export const Navigation = () => {
     getToken();
   }, []);
 
-  return <RouterProvider router={token ? authRouter : router} />;
+  return <RouterProvider router={test} />;
+  // return <RouterProvider router={token ? authRouter : router} />;
 };
