@@ -4,6 +4,13 @@
   row-gap: 10px;
   align-items: center;
   width: 380px;
+  padding: 10px 0;
+
+
+  @media (max-width: 390px) {
+    width: 340px;
+    row-gap: 10px;
+  }
 }
 
 .reset {
