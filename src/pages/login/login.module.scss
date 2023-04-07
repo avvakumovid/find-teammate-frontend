@@ -2,6 +2,8 @@
   margin: 0 auto;
   min-height: 100vh;
 
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -128,7 +130,7 @@
       padding: 10px 15px;
 
       .right {
-        flex-direction: column;
+        flex-direction: column-reverse;
         row-gap: 10px;
       }
     }

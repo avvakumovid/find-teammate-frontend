@@ -4,6 +4,9 @@ import { useAuthContext } from '@/context/AuthContext';
 import { useEffect } from 'react';
 import { getAccessToken } from '@/services/auth/auth.helper';
 import { Login } from '@/pages';
+import { Main } from './../pages/main/main';
+import { withAuth } from '@/hoc/withAuth';
+import { PrivateRoute } from './PrivateRoute';
 
 //const router = createBrowserRouter([
 //  {
@@ -21,9 +24,13 @@ import { Login } from '@/pages';
 
 const test = createBrowserRouter([
   {
-    path: '/',
+    path: '/login',
     element: <Login />,
   },
+  {
+    path: '/',
+    element: <PrivateRoute component={Main} />
+  }
 ]);
 
 export const Navigation = () => {

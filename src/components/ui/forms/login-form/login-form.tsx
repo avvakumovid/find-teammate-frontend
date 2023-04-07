@@ -7,17 +7,20 @@ import { Input } from '@/components/ui/inputs/input/input';
 import { PasswordInput } from '@/components/ui/inputs/password-input/password-input';
 import { Button } from '@/components/ui/button/button';
 import { GoMail } from 'react-icons/go';
+import { useAuthContext } from '@/context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginFormProps {}
 
 export const LoginForm = ({}: LoginFormProps) => {
-  //const { setToken } = useAuthContext();
-
+  const { setToken, token } = useAuthContext();
+  const navigate = useNavigate();
   const loginMutation = useMutation({
     mutationFn: AuthService.login.bind(AuthService),
     onSuccess: (data: ITokens | undefined) => {
       if (data) {
-        //  setToken(data.access_token);
+        setToken(data.access_token);
+        navigate('/');
       }
     },
     onError: () => {},
@@ -33,7 +36,6 @@ export const LoginForm = ({}: LoginFormProps) => {
     loginMutation.mutate(data);
     console.log(data);
   };
-  const u = register('username', { required: true });
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -52,9 +54,6 @@ export const LoginForm = ({}: LoginFormProps) => {
         {...register('password', { required: true })}
       />
       <Button text='Войти' type='contained' size='large' isSubmit />
-      <a href='#' className={styles.reset}>
-        Я не помню пароль
-      </a>
     </form>
   );
 };
